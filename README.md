@@ -2,4 +2,4 @@
 Machine learning guided synthesis for organic flow batteries and the processes.
 
 
-![File](figures/PNNL_file.png)
+![File](figures/file_structure.png)
