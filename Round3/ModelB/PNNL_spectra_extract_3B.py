@@ -136,12 +136,8 @@ sulfonating_agent= sulfonating_agent[:45] #np.hstack([sulfonating_agent[:21],sul
 analyte = np.array([element for element in  df_summary['Analyte']])
 analyte= analyte[:45] #np.hstack([analyte[:21],analyte[24:]])
 
-# product = np.hstack([product_region_area [:12],product_region_area [15:]])
-# reactant = np.hstack([reactant_region_area[:12],reactant_region_area[15:]])
 product = product_region_area[:45]
 reactant = reactant_region_area[:45]
-
-#unknown = np.hstack([unknown_area[:21],unknown_area[24:]])
 
 
 total = product + reactant #+ unknown
@@ -153,16 +149,11 @@ data_102617 = pd.DataFrame({
     'time': time,
     'temp': temp,
     'sulf': sulfonating_agent,
-    'analyte': analyte,
-    'area product': product,
-    'area reactant': reactant,
-#    'area unknown': unknown,
+    'anly': analyte,
     'yield product': yield_prod,
-    'yield reactant': yield_react,
-    #'yield unknown': yield_unknown
+
 })
 data_102617.sort_values('time')
-
 
 df_save = data_102617
 list(df_save.columns)

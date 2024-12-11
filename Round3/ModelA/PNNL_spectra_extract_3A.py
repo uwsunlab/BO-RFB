@@ -155,13 +155,9 @@ data_102612 = pd.DataFrame({
     'time': time,
     'temp': temp,
     'sulf': sulfonating_agent,
-    'analyte': analyte,
-    'area product': product,
-    'area reactant': reactant,
-#    'area unknown': unknown,
+    'anly': analyte,
     'yield product': yield_prod,
-    'yield reactant': yield_react,
-    #'yield unknown': yield_unknown
+
 })
 data_102612.sort_values('time').head(20)
 
