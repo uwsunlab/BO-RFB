@@ -154,8 +154,8 @@ data_102119 = pd.DataFrame({
 data_102119.sort_values('temp').head(11)
 
 # %%
-df_save = pd.concat([data_102119], axis=1,ignore_index=False,sort=False)
-df_save
+df_save = data_102119
+
 #%%
 list(df_save.columns)
 # %%
