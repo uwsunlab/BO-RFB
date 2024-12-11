@@ -26,10 +26,10 @@ import re
 
 # %%
 #df_summary = pd.read_excel("/Users/clarat/Documents/Sun_Lab/PNNL/2002 Design Summary Sheet.xlsx") #2002 summary
-df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Raw_HPLC_data/208590_ESMI Synthesis EXPERIMENT.xlsx",sheet_name='2006')
+df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round1_Sampling/208590_ESMI Synthesis EXPERIMENT.xlsx",sheet_name='2006')
 df_summary.head()
 # %%
-file_directory = '/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Raw_HPLC_data/102119 HPLC Data'
+file_directory = '/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round1_Sampling/102119 HPLC Data'
 # Get the CSV files only
 files = fnmatch.filter(os.listdir(file_directory), '*.csv')
 #files = fnmatch.filter(os.listdir('/Users/clarat/Documents/Sun_Lab/PNNL/102107 UV Spectra'), '*.csv')
@@ -51,13 +51,12 @@ big_df
 # %%
 def plot_spec(id):
   data = [big_df['X%s'%columns_list[id]],big_df['Y%s'%columns_list[id]]]
-  #norm_y = (big_df['Y%s'%sorted_files[id]] - big_df['Y%s'%sorted_files[id]].min()) / (big_df['Y%s'%sorted_files[id]].max() - big_df['Y%s'%sorted_files[id]].min())
   peaks, _ = find_peaks(data[1], prominence=0.005)
   col = (np.random.random(), np.random.random(), np.random.random())
-  plt.plot(data[0],data[1])#,c=col)
-  #plt.plot(data[0],norm_y)#,c=col)
+  plt.plot(data[0],data[1])
+
   plt.vlines(data[0].values[peaks], 0, np.max(data[1]), linestyle='--', color='tab:grey')#'dodgerblue'
-  #plt.title('%s'%sorted_files[id])
+
   plt.title('%s'%columns_list[id])#len(peaks))
 # %%
 #plot the normalized spectra
@@ -70,18 +69,10 @@ for i in range(0,len(df_list)):
 def fit_peak_range(min, max,filter):
     peak_list = []
     for i in range(big_df.shape[1]//2):
-        #print(i)
-        #signal_norm = (big_df['Y%s'%sorted_files[i]] - big_df['Y%s'%sorted_files[i]].min()) / (big_df['Y%s'%sorted_files[i]].max() - big_df['Y%s'%sorted_files[i]].min())
         chrom = Chromatogram(big_df, cols={'time':'X%s'%columns_list[i], 'signal':'Y%s'%columns_list[i]},time_window=[min,max])
         chrom.correct_baseline()
-        #print(i)
         peak_list.append(chrom.fit_peaks(prominence=filter))
-        # if i ==21:
-        #     peak_list.append(chrom.fit_peaks(prominence=filter))
-        # # elif i  == 31:
-        # #     peak_list.append(chrom.fit_peaks(prominence=0.06))
-        # else: 
-        #     peak_list.append(chrom.fit_peaks())
+
     return peak_list
 # %%
 list_all = fit_peak_range(0, 7, 0.02)
@@ -115,7 +106,6 @@ def select_peaks_area(value,peak_list):
             array[i] = 0
     return array
 
-#acid_peak = select_peaks_area(5.2)[3:]
 product_area = select_peaks_area(0.2,list_product)
 acid_area = select_peaks_area(5.2,list_all)
 reactant_area = select_peaks_area(3.9,list_reactant )+select_peaks_area(3.8,list_reactant )
