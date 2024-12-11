@@ -22,7 +22,7 @@ df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organ
 df_summary.head()
 
 #%%
-big_df = pd.read_csv("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelB/Round 3B/3B_combined.csv")
+big_df = pd.read_csv("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelB/data Round 3B/3B_combined.csv")
 big_df
 
 norm_df = big_df.copy()
@@ -146,14 +146,13 @@ yield_react = reactant/ total
 
 # %%
 data_102617 = pd.DataFrame({
-    'time': time,
-    'temp': temp,
-    'sulf': sulfonating_agent,
-    'anly': analyte,
-    'yield product': yield_prod,
+    '3B_time': time,
+    '3B_temp': temp,
+    '3B_sulf': sulfonating_agent,
+    '3B_anly': analyte,
+    '3B_yield product': yield_prod,
 
 })
-data_102617.sort_values('time')
 
 df_save = data_102617
 list(df_save.columns)
@@ -164,3 +163,4 @@ df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Batt
 '''
 > ### Send to HTP for Sampling
 '''
+

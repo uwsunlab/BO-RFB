@@ -76,11 +76,8 @@ def fit_peak_range(min, max,filter):
 # list_all = fit_peak_range(0, 7, 0.1)
 # list_all
 list_product = fit_peak_range(0, 0.5, 0.5)
-list_product
-# %%
 list_reactant = fit_peak_range(3.8, 5.0, 0.5)
-list_unknown= fit_peak_range(4.5, 5.5, 0.5)
-list_acid = fit_peak_range(5.1, 5.5, 0.79)
+
 
 #%% [markdown]
 #list_acid = fit_peak_range(3.5, 4.0, 1)
@@ -150,30 +147,20 @@ analyte= analyte[:45]
 product = product_region_area[:45] 
 reactant = reactant_region_area[:45] 
 
-
-
 total = product + reactant 
 yield_prod = product/ total
 yield_react = reactant/ total
 
-label_x= ['time','sulfonating agent','analyte','temp']
-x_data = [time,sulfonating_agent,analyte,temp]
-y_data = [yield_prod]
-line = ['.-','.-','.-','.']
-
-label_y = ['product']
-count = 0
-
 
 # %%
 data_102413 = pd.DataFrame({
-    'time': time,
-    'temp': temp,
-    'sulf': sulfonating_agent,
-    'anly': analyte,
-    'yield product': yield_prod,
+    '2B_time': time,
+    '2B_temp': temp,
+    '2B_sulf': sulfonating_agent,
+    '2B_anly': analyte,
+    '2B_yield product': yield_prod,
 })
-data_102413.sort_values('temp').head(30)
+# data_102413.sort_values('temp').head(30)
 
 # %%
 df_save = data_102413

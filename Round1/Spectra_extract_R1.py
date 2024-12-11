@@ -26,10 +26,10 @@ import re
 
 # %%
 #df_summary = pd.read_excel("/Users/clarat/Documents/Sun_Lab/PNNL/2002 Design Summary Sheet.xlsx") #2002 summary
-df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round1_Sampling/208590_ESMI Synthesis EXPERIMENT.xlsx",sheet_name='2006')
+df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round1/208590_ESMI Synthesis EXPERIMENT.xlsx",sheet_name='2006')
 df_summary.head()
 # %%
-file_directory = '/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round1_Sampling/102119 HPLC Data'
+file_directory = '/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round1/102119 HPLC Data'
 # Get the CSV files only
 files = fnmatch.filter(os.listdir(file_directory), '*.csv')
 #files = fnmatch.filter(os.listdir('/Users/clarat/Documents/Sun_Lab/PNNL/102107 UV Spectra'), '*.csv')
@@ -82,6 +82,7 @@ list_product = fit_peak_range(0, 0.5, 0.05)
 # %%
 list_reactant = fit_peak_range(3.5, 4, 0.2)
 
+
 #%% [markdown]
 '''
 >## NOTE
@@ -107,10 +108,9 @@ def select_peaks_area(value,peak_list):
     return array
 
 product_area = select_peaks_area(0.2,list_product)
-acid_area = select_peaks_area(5.2,list_all)
 reactant_area = select_peaks_area(3.9,list_reactant )+select_peaks_area(3.8,list_reactant )
-unknown_area = select_peaks_area(4.5,list_all)+select_peaks_area(4.4,list_all)
-acid_area ,product_area, reactant_area
+
+
 # %%
 time = np.array([element for element in  df_summary['Sample Time (min)']])
 time = np.hstack([time[:21],time[24:]])
@@ -126,32 +126,30 @@ analyte= np.hstack([analyte[:21],analyte[24:]])
 
 product = np.hstack([product_area[:21],product_area[24:]])
 reactant = np.hstack([reactant_area[:21],reactant_area[24:]])
-unknown = np.hstack([unknown_area[:21],unknown_area[24:]])
 
 total = product + reactant 
 yield_prod = product/ total
 yield_react = reactant/ total
-yield_unknown = unknown/ total
+
 
 # %%
 data_102119 = pd.DataFrame({
-    'time': time,
-    'temp': temp,
-    'sulf': sulfonating_agent,
-    'anly': analyte,
-    'yield product': yield_prod,
+    '01_time': time,
+    '01_temp': temp,
+    '01_sulf': sulfonating_agent,
+    '01_anly': analyte,
+    '01_yield product': yield_prod,
 })
-data_102119.sort_values('temp').head(11)
+data_102119.head(11)
 
 # %%
 df_save = data_102119
-
-#%%
 list(df_save.columns)
-# %%
-df_save.to_csv('/Users/ctuwsunlab/Documents/Sun_Lab/PNNL/PNNL_Iteration1/Extracted_data_round1.csv', index=False)
+df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round1/extracted_data_round1.csv', index=False)
 
 # %% [markdown]
 '''
 > ### Data for 102119 HPLC Data
 '''
+
+# %%

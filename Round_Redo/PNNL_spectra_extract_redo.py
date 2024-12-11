@@ -140,56 +140,6 @@ yield_react = reactant/ total
 #yield_unknown = unknown/ total
 
 # %%
-#plt.plot(acid_area)
-# plt.plot(product_area,'.')
-# plt.plot(reactant_area,'.')
-# Plot the data with different colors for every three points
-np.random.seed(41)
-for i in range(0, len(product_region_area), 3):
-    color1 = plt.cm.spring(i / len(product_region_area))  # Generate a color from the colormap
-    color2 =  plt.cm.winter(i / len(reactant_region_area))  # Generate a color from the colormap
-    #color = np.random.rand(3,) #random color
-    plt.plot(range(i, i+3),product_region_area[i:i+3], color='tab:blue',marker='o', linestyle='')
-    plt.plot(range(i, i+3),reactant_region_area[i:i+3], color='tab:orange',marker='o', linestyle='')
-    plt.vlines(i+2.5, 0, 2.3, linestyle='--', color='tab:grey')#'dodgerblue'
-    plt.fill_betweenx(np.linspace(0, 2.3, 100),21-0.5,24-0.5,color='tab:grey', alpha=0.01)
-    #plt.plot(range(i, i+3),reactant_area[i:i+3], color=color1,marker='o', linestyle='')
-    #plt.plot(range(i, i+3),(product_area/reactant_area)[i:i+3], color=color1,marker='o', linestyle='')
-    #plt.plot(range(i, i+3),unknown_area[i:i+3], color=color1,marker='o', linestyle='')
-
-plt.title('Visualization of spread between conditions')
-plt.xlabel('samples')
-plt.ylabel('output')
-plt.legend(['product','reactant'])
-
-# %%
-label_x= ['time','sulfonating agent','analyte','temp']
-x_data = [time,sulfonating_agent,analyte,temp]
-y_data = [yield_prod]#[product,reactant,product/reactant,unknown]
-line = ['.-','.-','.-','.']
-
-
-label_y = ['product']#['product','reactant','ratio','unknown'] 
-count = 0
-
-fig = plt.figure(figsize=(15,4))
-for i in range(len(y_data)):
-    for j in range(len(x_data)):
-        count +=1
-        pair = np.array([x_data[j],y_data[i]]).transpose()
-        pair = pair[pair[:,0].argsort()]
-        plt.subplot(len(y_data),len(x_data),count)
-        #plt.plot(x_data[j].reshape(-1,3).mean(axis=1),area.reshape(-1,3).mean(axis=1),'.-')
-        #plt.plot(pair[:,0].reshape(-1,3).mean(axis=1)[1:],pair[:,1].reshape(-1,3).mean(axis=1)[1:],'.-')
-        #plt.plot(pair[:,0].reshape(-1,3).mean(axis=1)[1:],pair[:,1].reshape(-1,3).max(axis=1)[1:],'.-')
-        plt.plot(pair[:,0],pair[:,1],line[j])
-#        if label_y[i] != 'unknown':
-#            plt.axhline(y=0.95, color='tab:green',linestyle = '--' ,linewidth=2)
-        plt.xlabel(label_x[j])
-        plt.ylabel('Yield of  %s'%label_y[i])
-
-#pair[pair[:,0].argsort()]
-# %%
 data_102728 = pd.DataFrame({
     'model ID': df_summary['Model ID'].to_numpy(),
     'time': time,
@@ -203,3 +153,15 @@ data_102728.head(21)
 
 
 # %%
+df_save = data_102728
+
+#%%
+list(df_save.columns)
+# %%
+df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round_Redo/extracted_data_round_redo.csv', index=False)
+
+# %% [markdown]
+'''
+> ### Data for 102728 HPLC Data
+'''
+

@@ -21,7 +21,7 @@ df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organ
 df_summary
 
 #%%
-big_df = pd.read_csv("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelA/Round 3A /3A_combined.csv")
+big_df = pd.read_csv("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelA/data Round 3A /3A_combined.csv")
 big_df
 
 norm_df = big_df.copy()
@@ -65,6 +65,7 @@ def fit_peak_range(df,min, max,filter):
 
     return peak_list
 
+# %%
 # %%
 list_product = fit_peak_range(big_df,1, 2.0, 0.9)
 #list_product = fit_peak_range(0.0, 0.6, 0.2)
@@ -142,24 +143,20 @@ analyte= analyte[:45] #np.hstack([analyte[:21],analyte[24:]])
 
 product = product_region_area[:45]
 reactant = reactant_region_area[:45]
-#unknown = np.hstack([unknown_area[:21],unknown_area[24:]])
-
 
 total = product + reactant #+ unknown
 yield_prod = product/ total
 yield_react = reactant/ total
 
-
 # %%
 data_102612 = pd.DataFrame({
-    'time': time,
-    'temp': temp,
-    'sulf': sulfonating_agent,
-    'anly': analyte,
-    'yield product': yield_prod,
+    '3A_time': time,
+    '3A_temp': temp,
+    '3A_sulf': sulfonating_agent,
+    '3A_anly': analyte,
+    '3A_yield product': yield_prod,
 
 })
-data_102612.sort_values('time').head(20)
 
 # %%
 df_save = data_102612

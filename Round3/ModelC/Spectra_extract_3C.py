@@ -25,9 +25,8 @@ df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organ
 df_summary.head()
 # %%
 # Get the CSV files only
-directory = "/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelC/Round 3C/"
+directory = "/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelC/data Round 3C/"
 files = fnmatch.filter(os.listdir(directory), '*.csv')
-#files = fnmatch.filter(os.listdir('/Users/clarat/Documents/Sun_Lab/PNNL/102107 UV Spectra'), '*.csv')
 
 # Sort files based on the second number in the filename
 sorted_files = np.array(sorted(files, key=lambda s: int(re.findall(r'\d+', s)[1]) if len(re.findall(r'\d+', s)) >= 2 else 0))
@@ -47,7 +46,7 @@ y_columns = [col for col in df_32.columns if col.startswith('Y')]
 norm_df_32[y_columns] = (df_32[y_columns] - df_32[y_columns].mean()) / (df_32[y_columns].max() - df_32[y_columns].min())
 
 # 33 to 48 
-df_48 = pd.read_csv("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelC/Round 3C/3B_spec33_48.csv")
+df_48 = pd.read_csv("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelC/data Round 3C/3C_spec33_48.csv")
 # Normalize only the Y columns in df_48
 norm_df_48 = df_48.copy()
 y_columns_48 = [col for col in df_48.columns if col.startswith('Y')]
@@ -155,7 +154,6 @@ def area_select(peak_list):
 product_region_area = area_select(list_product)
 reactant_region_area = area_select(list_reactant)
 
-
 norm_area_product = area_select(norm_product)
 norm_area_reactant = area_select(norm_reactant)
 
@@ -184,11 +182,11 @@ yield_react = reactant/ total
 
 # %%
 data_102622 = pd.DataFrame({
-    'time': time,
-    'temp': temp,
-    'sulf': sulfonating_agent,
-    'anly': analyte,
-    'yield product': yield_prod,
+    '3C_time': time,
+    '3C_temp': temp,
+    '3C_sulf': sulfonating_agent,
+    '3C_anly': analyte,
+    '3C_yield product': yield_prod,
 
 })
 data_102622.head(20)
@@ -200,7 +198,7 @@ df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Batt
 
 # %% [markdown]
 '''
-> ### Send to HTP System for Sampling
+> ### HPLC data extracted
 '''
 
 # %%

@@ -76,11 +76,7 @@ def fit_peak_range(min, max,filter):
     return peak_list
 # %%
 list_product = fit_peak_range(0, 0.5, 0.7)
-list_product
-# %%
 list_reactant = fit_peak_range(3.8, 5.0, 0.5)
-list_unknown= fit_peak_range(4.0, 5.0, 0.5)
-list_acid = fit_peak_range(5.1, 5.5, 0.79)
 
 #%% [markdown]
 '''
@@ -149,7 +145,6 @@ analyte= analyte[:45] #np.hstack([analyte[:21],analyte[24:]])
 product = product_region_area[:45] #np.hstack([product_area[:21],product_area[24:]])
 reactant = reactant_region_area[:45] #np.hstack([reactant_area[:21],reactant_area[24:]])
 
-
 total = product + reactant 
 yield_prod = product/ total
 yield_react = reactant/ total
@@ -157,13 +152,12 @@ yield_react = reactant/ total
 
 # %%
 data_102418 = pd.DataFrame({
-    'time': time,
-    'temp': temp,
-    'sulf': sulfonating_agent,
-    'anly': analyte,
-    'yield product': yield_prod,
+    '2C_time': time,
+    '2C_temp': temp,
+    '2C_sulf': sulfonating_agent,
+    '2C_anly': analyte,
+    '2C_yield product': yield_prod,
 })
-data_102418.sort_values('temp')#.head(11)
 
 # %%
 df_save = data_102418
@@ -173,4 +167,3 @@ list(df_save.columns)
 df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round2/ModelC/extracted_data_round2C.csv', index=False)
 
 
-# %%

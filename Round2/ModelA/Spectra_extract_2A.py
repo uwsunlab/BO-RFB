@@ -84,11 +84,7 @@ Area counts for compounds can assume intersection at origin and 8910360 = 0.053 
 '''
 # %%
 list_product = fit_peak_range(0, 0.5, 0.5)
-list_product
-# %%
 list_reactant = fit_peak_range(3.8, 5.0, 0.5)
-list_unknown= fit_peak_range(4.0, 5.0, 0.5)
-list_acid = fit_peak_range(5.1, 5.5, 0.79)
 
 
 def minmax(list_,name):
@@ -104,8 +100,6 @@ def minmax(list_,name):
 
 minmax(list_product, 'retention_time')
 minmax(list_reactant, 'retention_time')
-minmax(list_acid, 'retention_time')
-
 # %%
 def select_peaks_area(value,peak_list):
     array = np.zeros(len(peak_list))
@@ -149,29 +143,17 @@ yield_prod = product/ total
 yield_react = reactant/ total
 
 # %%
-label_x= ['time','sulfonating agent','analyte','temp']
-x_data = [time,sulfonating_agent,analyte,temp]
-y_data = [yield_prod]
-line = ['.-','.-','.-','.']
-
-label_y = ['product']
-count = 0
-
-# %%
 data_102404 = pd.DataFrame({
-    'time': time,
-    'temp': temp,
-    'sulf': sulfonating_agent,
-    'anly': analyte,
-    'yield product': yield_prod,
+    '2A_time': time,
+    '2A_temp': temp,
+    '2A_sulf': sulfonating_agent,
+    '2A_anly': analyte,
+    '2A_yield product': yield_prod,
 
 })
-data_102404.sort_values('temp')
 
 df_save = data_102404
 #%%
 list(df_save.columns)
 # %%
 df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round2/ModelA/extracted_data_round2A.csv', index=False)
-
-# %%
