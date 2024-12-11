@@ -4,11 +4,10 @@ import pandas as pd
 import os
 
 # %%
-path = '/Users/ctuwsunlab/Documents/Sun_Lab/PNNL/PNNL_Iteration3/Round 3B/'
+path = '/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelB/data Round 3B/'
 excel_files = [f for f in os.listdir(path) if f.endswith('.xlsx')]
 excel_files = sorted(excel_files)
 excel_files
-
 # %%
 df_list = []
 for file in excel_files:
