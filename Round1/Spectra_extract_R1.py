@@ -25,7 +25,6 @@ import fnmatch
 import re
 
 # %%
-#df_summary = pd.read_excel("/Users/clarat/Documents/Sun_Lab/PNNL/2002 Design Summary Sheet.xlsx") #2002 summary
 df_summary = pd.read_excel("208590_ESMI Synthesis EXPERIMENT.xlsx",sheet_name='2006')
 df_summary.head()
 # %%
@@ -58,6 +57,10 @@ def plot_spec(id):
   plt.vlines(data[0].values[peaks], 0, np.max(data[1]), linestyle='--', color='tab:grey')#'dodgerblue'
 
   plt.title('%s'%columns_list[id])#len(peaks))
+
+plot_spec(0)
+plt.xlabel('Wavelength (nm)')
+plt.ylabel('Absorbance (mAU)')
 # %%
 #plot the normalized spectra
 fig = plt.figure(figsize=(20,25))

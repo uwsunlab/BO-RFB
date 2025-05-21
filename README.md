@@ -37,3 +37,8 @@ In total, four rounds of data collection were conducted and are named: Round1, R
 - [Round 2](Round2): Contains the code to extract yield from HPLC and the Bayesian Optimization in round 2 for Model A, Model B, and Model C, as well as their repective HPLC samples. 
 - [Round 3](Round3): Contains the code to extract yield from HPLC and the Bayesian Optimization in round 3 for Model A, Model B, and Model C, as well as their repective HPLC samples. 
 - [Round Redo](Round_Redo): Contains selected samples that were resynthesized due to inconsistencies.
+
+## Data Extraction
+- Explain about the HPLC data
+- Explain about the extraction algorithm and the python
+![File](figures/HPLC.png)
