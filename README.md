@@ -28,7 +28,7 @@ The uncertainty plots for Model C were constructed in the same file. (SI)
 Model evaluations and comparison plots can be found in ```Results/All_results.ipynb```
 
 # Method
-In total, four rounds of data collection were conducted and are denoted: Round1, Round2, Round3, and Round_Redo. 
+In total, four rounds of data collection were conducted and are named: Round1, Round2, Round3, and Round_Redo. 
 - Round 1: Contains data generated from Latin Hypercube sampling and their respective HPLC samples. 
 - Round 2: Contains the code to extract yield from HPLC and the Bayesian Optimization in round 2 for Model A, Model B, and Model C, as well as their repective HPLC samples. 
 - Round 3: Contains the code to extract yield from HPLC and the Bayesian Optimization in round 3 for Model A, Model B, and Model C, as well as their repective HPLC samples. 
