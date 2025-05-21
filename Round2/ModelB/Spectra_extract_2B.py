@@ -20,11 +20,11 @@ from hplc.quant import Chromatogram
 import fnmatch
 import re
 # %%
-df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round2/ModelB/2307 Experiment Details.xlsx", sheet_name="summary")
+df_summary = pd.read_excel("2307 Experiment Details.xlsx", sheet_name="summary")
 df_summary.head()
 # %%
 # Get the CSV files only
-directory = "/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round2/ModelB/240805_102413 - Test 2B/"
+directory = "240805_102413 - Test 2B/"
 files = fnmatch.filter(os.listdir(directory), '*.csv')
 
 # Sort files based on the second number in the filename
@@ -167,6 +167,6 @@ df_save = data_102413
 #%%
 list(df_save.columns)
 # %%
-df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round2/ModelB/extracted_data_round2B.csv', index=False)
+df_save.to_csv('extracted_data_round2B.csv', index=False)
 
 

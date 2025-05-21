@@ -20,12 +20,11 @@ from hplc.quant import Chromatogram
 import fnmatch
 import re
 # %%
-#df_summary = pd.read_excel("/Users/clarat/Documents/Sun_Lab/PNNL/2002 Design Summary Sheet.xlsx") #2002 summary
-df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelC/Iteration3_Summary.xlsx", sheet_name="Iteration3C")
+df_summary = pd.read_excel("Iteration3_Summary.xlsx", sheet_name="Iteration3C")
 df_summary.head()
 # %%
 # Get the CSV files only
-directory = "/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelC/data Round 3C/"
+directory = "data Round 3C/"
 files = fnmatch.filter(os.listdir(directory), '*.csv')
 
 # Sort files based on the second number in the filename
@@ -46,7 +45,7 @@ y_columns = [col for col in df_32.columns if col.startswith('Y')]
 norm_df_32[y_columns] = (df_32[y_columns] - df_32[y_columns].mean()) / (df_32[y_columns].max() - df_32[y_columns].min())
 
 # 33 to 48 
-df_48 = pd.read_csv("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelC/data Round 3C/3C_spec33_48.csv")
+df_48 = pd.read_csv("data Round 3C/3C_spec33_48.csv")
 # Normalize only the Y columns in df_48
 norm_df_48 = df_48.copy()
 y_columns_48 = [col for col in df_48.columns if col.startswith('Y')]
@@ -194,7 +193,7 @@ data_102622.head(20)
 df_save = data_102622
 list(df_save.columns)
 # %%
-df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelC/Extracted_data_round3C.csv', index=False)
+df_save.to_csv('Extracted_data_round3C.csv', index=False)
 
 # %% [markdown]
 '''

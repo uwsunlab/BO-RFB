@@ -20,11 +20,11 @@ import fnmatch
 import re
 # %%
 #df_summary = pd.read_excel("/Users/clarat/Documents/Sun_Lab/PNNL/2002 Design Summary Sheet.xlsx") #2002 summary
-df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round2/ModelA/2303 Experiment Details.xlsx", sheet_name="summary")
+df_summary = pd.read_excel("2303 Experiment Details.xlsx", sheet_name="summary")
 df_summary.head()
 
 # Get the CSV files only
-directory = "/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round2/ModelA/240725_102404 - Test 2A/"
+directory = "240725_102404 - Test 2A/"
 files = fnmatch.filter(os.listdir(directory), '*.csv')
 
 sorted_files = np.array(sorted(files, key=lambda s: int(re.findall(r'\d+', s)[1]) if len(re.findall(r'\d+', s)) >= 2 else 0))
@@ -156,4 +156,4 @@ df_save = data_102404
 #%%
 list(df_save.columns)
 # %%
-df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round2/ModelA/extracted_data_round2A.csv', index=False)
+df_save.to_csv('extracted_data_round2A.csv', index=False)

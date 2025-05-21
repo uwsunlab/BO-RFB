@@ -17,7 +17,7 @@ from scipy.signal import find_peaks
 
 from hplc.quant import Chromatogram
 # %%
-directory = '/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round_Redo/102728 HPLC Data.xlsx'
+directory = '102728 HPLC Data.xlsx'
 df_summary = pd.read_excel(directory,sheet_name='all conditions')
 df_summary.head(7)
 
@@ -158,7 +158,7 @@ df_save = data_102728
 #%%
 list(df_save.columns)
 # %%
-df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round_Redo/extracted_data_round_redo.csv', index=False)
+df_save.to_csv('extracted_data_round_redo.csv', index=False)
 
 # %% [markdown]
 '''

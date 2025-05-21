@@ -26,10 +26,10 @@ import re
 
 # %%
 #df_summary = pd.read_excel("/Users/clarat/Documents/Sun_Lab/PNNL/2002 Design Summary Sheet.xlsx") #2002 summary
-df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round1/208590_ESMI Synthesis EXPERIMENT.xlsx",sheet_name='2006')
+df_summary = pd.read_excel("208590_ESMI Synthesis EXPERIMENT.xlsx",sheet_name='2006')
 df_summary.head()
 # %%
-file_directory = '/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round1/102119 HPLC Data'
+file_directory = '102119 HPLC Data'
 # Get the CSV files only
 files = fnmatch.filter(os.listdir(file_directory), '*.csv')
 #files = fnmatch.filter(os.listdir('/Users/clarat/Documents/Sun_Lab/PNNL/102107 UV Spectra'), '*.csv')
@@ -145,7 +145,7 @@ data_102119.head(11)
 # %%
 df_save = data_102119
 list(df_save.columns)
-df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round1/extracted_data_round1.csv', index=False)
+df_save.to_csv('extracted_data_round1.csv', index=False)
 
 # %% [markdown]
 '''

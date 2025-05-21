@@ -19,14 +19,14 @@ from hplc.quant import Chromatogram
 
 # %%
 #df_summary = pd.read_excel("/Users/clarat/Documents/Sun_Lab/PNNL/2002 Design Summary Sheet.xlsx") #2002 summary
-df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round2/ModelC/Experiment 2C.xlsx", sheet_name="summary")
+df_summary = pd.read_excel("Experiment 2C.xlsx", sheet_name="summary")
 df_summary.head()
 # %%
 import fnmatch
 import re
 
 # Get the CSV files only
-directory = "/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round2/ModelC/240812_102418 - Test 2C/"
+directory = "240812_102418 - Test 2C/"
 files = fnmatch.filter(os.listdir(directory), '*.csv')
 #files = fnmatch.filter(os.listdir('/Users/clarat/Documents/Sun_Lab/PNNL/102107 UV Spectra'), '*.csv')
 
@@ -164,6 +164,6 @@ df_save = data_102418
 #%%
 list(df_save.columns)
 # %%
-df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round2/ModelC/extracted_data_round2C.csv', index=False)
+df_save.to_csv('extracted_data_round2C.csv', index=False)
 
 

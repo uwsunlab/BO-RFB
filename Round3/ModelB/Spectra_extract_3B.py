@@ -17,12 +17,11 @@ from scipy.signal import find_peaks
 
 from hplc.quant import Chromatogram
 # %%
-#df_summary = pd.read_excel("/Users/clarat/Documents/Sun_Lab/PNNL/2002 Design Summary Sheet.xlsx") #2002 summary
-df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelB/Iteration3_Summary.xlsx", sheet_name="Iteration3B")
+df_summary = pd.read_excel("Iteration3_Summary.xlsx", sheet_name="Iteration3B")
 df_summary.head()
 
 #%%
-big_df = pd.read_csv("/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelB/data Round 3B/3B_combined.csv")
+big_df = pd.read_csv("data Round 3B/3B_combined.csv")
 big_df
 
 norm_df = big_df.copy()
@@ -157,7 +156,7 @@ data_102617 = pd.DataFrame({
 df_save = data_102617
 list(df_save.columns)
 # %%
-df_save.to_csv('/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelB/Extracted_data_round3B.csv', index=False)
+df_save.to_csv('Extracted_data_round3B.csv', index=False)
 
 # %% [markdown]
 '''
