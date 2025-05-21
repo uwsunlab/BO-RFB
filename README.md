@@ -8,17 +8,20 @@ The following figure is a diagram that shows how to files are organized
 ![File](figures/file_structure.png)
 
 # Results 
-## Model A: 
+## Model A:
+[Open Model A Results Notebook](Results/ModelA_results.ipynb)
 ![File](figures/ModelA.png)
 Plots for Model A can be found under ```Results/ModelA_results.ipynb```
 The uncertainty plots for Model A were constructed in the same file. (SI)
 
 ## Model B:
+[Open Model B Results Notebook](Results/ModelB_results.ipynb)
 ![File](figures/ModelB.png)
 Plots for Model B can be found under ```Results/ModelB_results.ipynb```
 The uncertainty plots for Model B were constructed in the same file. (SI)
 
 ## Model C: 
+[Open Model C Results Notebook](Results/ModelC_results.ipynb)
 ![File](figures/ModelC.png)
 Plots for Model C can be found under ```Results/ModelC_results.ipynb```
 The uncertainty plots for Model C were constructed in the same file. (SI)
