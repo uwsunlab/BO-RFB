@@ -9,27 +9,27 @@ The following figure is a diagram that shows how to files are organized
 
 # Results 
 ## Model A:
-[Open Model A Results Notebook](Results/ModelA_results.ipynb)
+[Open Model A Results Notebook](Experiment_Results/ModelA_results.ipynb)
 ![File](figures/ModelA.png)
-Plots for Model A can be found under ```Results/ModelA_results.ipynb```
+Plots for Model A can be found under ```Experiment_Results/ModelA_results.ipynb```
 The uncertainty plots for Model A were constructed in the same file. (SI)
 
 ## Model B:
-[Open Model B Results Notebook](Results/ModelB_results.ipynb)
+[Open Model B Results Notebook](Experiment_Results/ModelB_results.ipynb)
 ![File](figures/ModelB.png)
-Plots for Model B can be found under ```Results/ModelB_results.ipynb```
+Plots for Model B can be found under ```Experiment_Results/ModelB_results.ipynb```
 The uncertainty plots for Model B were constructed in the same file. (SI)
 
 ## Model C: 
-[Open Model C Results Notebook](Results/ModelC_results.ipynb)
+[Open Model C Results Notebook](Experiment_Results/ModelC_results.ipynb)
 ![File](figures/ModelC.png)
-Plots for Model C can be found under ```Results/ModelC_results.ipynb```
+Plots for Model C can be found under ```Experiment_Results/ModelC_results.ipynb```
 The uncertainty plots for Model C were constructed in the same file. (SI)
 
 ## Summary of Results
-[Open Summary Results Notebook](Results/All_results.ipynb)
+[Open Summary Results Notebook](Experiment_Results/All_results.ipynb)
 ![File](figures/ResultsSummary.png)
-Model evaluations and comparison plots can be found in ```Results/All_results.ipynb```
+Model evaluations and comparison plots can be found in ```Experiment_Results/All_results.ipynb```
 
 # Method
 In total, four rounds of data collection were conducted and are named: Round1, Round2, Round3, and Round_Redo. 
