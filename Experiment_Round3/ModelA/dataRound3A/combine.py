@@ -4,7 +4,7 @@ import pandas as pd
 import os
 
 # %%
-path = '../data Round 3A '
+path = '../dataRound3A '
 excel_files = [f for f in os.listdir(path) if f.endswith('.xlsx')]
 excel_files = sorted(excel_files)
 excel_files
