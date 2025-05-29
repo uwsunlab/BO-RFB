@@ -4,7 +4,7 @@ import pandas as pd
 import os
 
 # %%
-path = '/Users/ctuwsunlab/Documents/GitHub/PNNL-ML_for_Organic_Flow_Battery_Materials/Round3/ModelA/data Round 3A '
+path = '../data Round 3A '
 excel_files = [f for f in os.listdir(path) if f.endswith('.xlsx')]
 excel_files = sorted(excel_files)
 excel_files

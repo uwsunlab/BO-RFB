@@ -19,17 +19,17 @@ from scipy.signal import find_peaks
 from hplc.quant import Chromatogram
 # %%
 #df_summary = pd.read_excel("/Users/clarat/Documents/Sun_Lab/PNNL/2002 Design Summary Sheet.xlsx") #2002 summary
-df_summary = pd.read_excel("/Users/ctuwsunlab/Documents/Sun_Lab/PNNL/PNNL_Iteration3/Iteration3_Summary.xlsx", sheet_name="Iteration3C")
+df_summary = pd.read_excel("../Iteration3_Summary.xlsx", sheet_name="Iteration3C")
 vial_id_33 = df_summary[df_summary['Vial ID'] == 33]
 vial_id_33
 
 # Get the CSV files only
-data33 = pd.read_csv("/Users/ctuwsunlab/Documents/Sun_Lab/PNNL/PNNL_Iteration3/Round 3C/102622 (33).csv")
+data33 = pd.read_csv("../data Round 3C/102622 (33).csv")
 data33
 plt.plot(data33['X33'], data33['Y33'])
 plt.show()
 
-data33_new = pd.read_excel("/Users/ctuwsunlab/Documents/Sun_Lab/PNNL/PNNL_Iteration3/Round 3C/3C-102622_HT-HJ-E wells.xlsx", sheet_name="Sheet1", header=None)
+data33_new = pd.read_excel("../data Round 3C/3C-102622_HT-HJ-E wells.xlsx", sheet_name="Sheet1", header=None)
 data33_new.columns = ['X33', 'Y33']
 data33_new
 plt.plot(data33_new.iloc[:, 0], data33_new.iloc[:, 1])

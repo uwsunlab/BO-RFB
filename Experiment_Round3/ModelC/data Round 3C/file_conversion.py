@@ -21,7 +21,7 @@ import re
 
 # %%
 iteration_id = '102622'
-directory = '/Users/ctuwsunlab/Documents/Sun_Lab/PNNL/PNNL_Iteration3/Round 3C/'
+directory = '../data Round 3C/'
 
 # Get the CSV files only
 files = fnmatch.filter(os.listdir(directory), '*.arw')
