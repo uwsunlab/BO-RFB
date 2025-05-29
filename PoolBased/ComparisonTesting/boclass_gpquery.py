@@ -43,7 +43,7 @@ from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-dtype = torch.float32
+dtype = torch.double
 
 class PoolObjectives:
     def __init__(self, x_inputs, y_output, yvar_output, columns, bounds):
