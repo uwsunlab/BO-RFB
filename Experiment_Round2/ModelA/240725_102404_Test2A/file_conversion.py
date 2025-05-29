@@ -21,11 +21,10 @@ import re
 
 # %%
 iteration_id = '102404'
-directory = '/Users/ctuwsunlab/Documents/Sun_Lab/PNNL/PNNL_Iteration2/240725_102404 - Test 2A/'
+directory = '../240725_102404_Test2A'
 
 # Get the CSV files only
 files = fnmatch.filter(os.listdir(directory), '*.arw')
-#files = fnmatch.filter(os.listdir('/Users/clarat/Documents/Sun_Lab/PNNL/102107 UV Spectra'), '*.csv')
 
 # Sort files based on the second number in the filename
 sorted_files = sorted(files, key=lambda s: int(re.findall(r'\d+', s)[1]) if len(re.findall(r'\d+', s)) >= 2 else 0)
