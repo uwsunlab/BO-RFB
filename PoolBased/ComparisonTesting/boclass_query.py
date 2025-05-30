@@ -32,6 +32,7 @@ from botorch.utils.transforms import normalize, unnormalize
 
 from ipywidgets import interact, FloatSlider
 
+from sklearn.ensemble import RandomForestRegressor
 
 #LHS sampling
 #from pyDOE import lhs
@@ -114,8 +115,6 @@ class Models:
         self.y_train = y_train
         self.y_train_var = y_train_var
         self.bounds = bounds
-        self.model = self._fit_gp_model()
-        self.model_mixed = self._fit_gp_mixed_model()
         self.dtype = dtype
         self.columns = objective.columns #['time', 'temp', 'sulf', 'anly']
         self.batch_size = batch_size
@@ -124,6 +123,9 @@ class Models:
         self.y_all_candidates = objective.y_output
         self.yvar_all_candidates = objective.yvar_output
         self.random_id = random_id
+        self.model = self._fit_gp_model()
+        self.model_mixed = self._fit_gp_mixed_model()
+        self.rf_model = self._fit_rf_model()
         
     
     def _fit_gp_model(self):
@@ -138,22 +140,37 @@ class Models:
         fit_gpytorch_mll(mll)
         return model_mixed
 
+    def _fit_rf_model(self):
+        rf_model = RandomForestRegressor(n_estimators=100, random_state=self.random_id)
+        rf_model.fit(self.x_train, self.y_train.squeeze().numpy())
+        return rf_model
+    
     def gp_evaluate(self, test_x, model_version):
         self.model.eval()
         self.model_mixed.eval()
-        if model_version == 'ModelA':
+        if model_version == 'Regular':
             with torch.no_grad():
                 posterior = self.model.posterior(test_x)
-        elif model_version == 'ModelB' or model_version == 'ModelC':
+            mean = posterior.mean.squeeze().numpy()
+            var = posterior.variance.squeeze().numpy()                
+        elif model_version == 'Mixed':
             with torch.no_grad():
                 posterior = self.model_mixed.posterior(test_x)
+            mean = posterior.mean.squeeze().numpy()
+            var = posterior.variance.squeeze().numpy()
+        elif model_version == 'RamdomForest':
+            mean, var = self.rf_evaluate(test_x)
         else:
             raise ValueError("Invalid model version. Use 'ModelA', 'ModelB', or 'ModelC'.")
 
-        mean = posterior.mean.squeeze().numpy()
-        var = posterior.variance.squeeze().numpy()
-
         return mean, var
+    
+    def rf_evaluate(self, test_x):
+        all_preds = np.stack([tree.predict(test_x) for tree in self.rf_model.estimators_], axis=0)
+        mean_pred = np.mean(all_preds, axis=0)
+        std_pred = np.std(all_preds, axis=0)
+
+        return mean_pred, std_pred
 
     def optimize_regular(self,batch_size):
         torch.manual_seed(self.random_id)
@@ -161,6 +178,21 @@ class Models:
         random.seed(self.random_id)
         self.best_f = self.y_train.max()
         qEI = qExpectedImprovement(model=self.model, best_f=self.best_f)
+        candidate, _ = optimize_acqf(
+            acq_function=qEI,
+            bounds=torch.tensor([[0., 0., 0. , 0.], [1., 1., 1.,1.]], dtype=self.x_train.dtype),
+            q=batch_size,
+            num_restarts=15,
+            raw_samples=100,
+        )
+        return unnormalize(candidate, self.bounds)
+    
+    def optimize_randomforest(self,batch_size):
+        torch.manual_seed(self.random_id)
+        np.random.seed(self.random_id)
+        random.seed(self.random_id)
+        self.best_f = self.y_train.max()
+        qEI = qExpectedImprovement(model=self.rf_model, best_f=self.best_f)
         candidate, _ = optimize_acqf(
             acq_function=qEI,
             bounds=torch.tensor([[0., 0., 0. , 0.], [1., 1., 1.,1.]], dtype=self.x_train.dtype),
@@ -220,6 +252,18 @@ class Models:
 
         return torch.tensor(candidates_4D, dtype=dtype),torch.tensor(y_means, dtype=dtype).reshape(-1, 1),torch.tensor(y_vars, dtype=dtype).reshape(-1, 1), candidates_id
     
+    def randomforest_candidates(self, batch_size=1):
+        candidates_4D = self.optimize_randomforest(batch_size=batch_size).cpu().numpy()
+        #candidates_4D = self.optimize_from_data(x_candidates, self.batch_size).cpu().numpy()
+        data = {
+            self.columns[0]: candidates_4D [:, 0],
+            self.columns[1]: candidates_4D [:, 1],
+            self.columns[2]: candidates_4D [:, 2],
+            self.columns[3]: candidates_4D [:, 3],
+        }
+        data_df = pd.DataFrame(data)
+        return data_df.round(2)
+
     def batch_candidates(self, batch_size):
         candidates_4D = self.optimize_regular(batch_size=batch_size).cpu().numpy()
         #candidates_4D = self.optimize_from_data(x_candidates, self.batch_size).cpu().numpy()
@@ -331,23 +375,37 @@ class Models:
         return data_mix_df.round(2)
     
 class Plotting:
-    def __init__(self, gp_model:Models, variable_combinations):
+    def __init__(self, gp_model, variable_combinations, select):
         self.models = gp_model
-        self.x_train = gp_model.x_train
-        self.y_train = gp_model.y_train
-        self.bounds = gp_model.bounds
-        self.model = gp_model.model
         self.variable_combinations = variable_combinations
         self.dtype = dtype
+        self.select = select
 
     def generate_input_data(self, A, B, c, d, combination):
         if combination == ('time', 'sulf', 'anly'):
             return torch.tensor(np.array([[A[i, j], d, B[i, j], c] for i in range(A.shape[0]) for j in range(A.shape[1])]), dtype=self.dtype)
-        elif combination == ('time', 'anly', 'sulf'):
+        elif combination == ('theta', 'r', 't'):
             return torch.tensor(np.array([[d, A[i, j], B[i, j], c] for i in range(A.shape[0]) for j in range(A.shape[1])]), dtype=self.dtype)
         elif combination == ('sulf', 'anly', 'time'):
             return torch.tensor(np.array([[A[i, j], c, B[i, j], d] for i in range(A.shape[0]) for j in range(A.shape[1])]), dtype=self.dtype)
+    
+    def evaluate(self, test_x, select):
+        if select == 'Gaussian':
+            self.models.eval()
+            with torch.no_grad():
+                posterior = self.models.posterior(test_x)
+            mean = posterior.mean.squeeze().numpy()
+            var = posterior.variance.squeeze().numpy()
 
+        elif select == 'RandomForest':
+            all_preds = np.stack([tree.predict(test_x) for tree in self.models.estimators_], axis=0)
+            mean = np.mean(all_preds, axis=0)
+            var = np.std(all_preds, axis=0)
+        else: 
+            raise ValueError("Invalid model selection. Use 'Gaussian' or 'RandomForest'.")
+        
+        return mean, var
+    
     def create_slices(self, c_slices, d_fixed, combination):
         num_points = 20
         a = np.linspace(0, 1, num_points)
@@ -359,14 +417,14 @@ class Plotting:
             mean_values = []
             for c in c_slices:
                 input_data = self.generate_input_data(A, B, c, d, combination)
-                mean, _ = self.models.gp_evaluate(input_data,self.model_version)
+                mean, _ = self.evaluate(input_data, self.select)
                 mean_values.append(mean.reshape(A.shape))  # Reshape to grid
             store_mean.append(mean_values)
 
         return A, B, store_mean
 
-    def sliced_plotting(self, model_version, combination, minmax, colormap='Viridis'):
-        self.model_version = model_version
+    def sliced_plotting(self, combination, minmax, colormap='Viridis'):
+        
         # Create slices for the fixed variable
         c_slices = np.linspace(0, 1, 12)
         d_fixed = [0, 0.25, 0.5, 0.75, 1.0]  # Fixed value for the other variable
@@ -477,6 +535,10 @@ class Plotting:
         )
 
         fig.show()
+
+
+
+
 
 
 
