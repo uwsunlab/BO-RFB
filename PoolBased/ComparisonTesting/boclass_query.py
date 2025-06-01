@@ -161,7 +161,7 @@ class Models:
         elif model_version == 'RamdomForest':
             mean, var = self.rf_evaluate(test_x)
         else:
-            raise ValueError("Invalid model version. Use 'ModelA', 'ModelB', or 'ModelC'.")
+            raise ValueError("Invalid model version. Use 'Regular', 'Mixed'")
 
         return mean, var
     
@@ -432,8 +432,8 @@ class Plotting:
         # Create a new figure with subplots for each combination
         fig = make_subplots(rows=1, cols=5, subplot_titles=('temp: 0', 'temp: 0.25','temp: 0.5', 'temp: 0.75','temp: 1.0'),
                         specs=[[{'type': 'surface'}, {'type': 'surface'},{'type': 'surface'}, {'type': 'surface'}, {'type': 'surface'}]])
-        global_min = minmax[0].item()
-        global_max = minmax[1].item()
+        global_min = minmax[0]
+        global_max = minmax[1]
 
         # Create slices and get mean values
         A, B, store_mean = self.create_slices(c_slices, d_fixed, combination)
