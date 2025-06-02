@@ -69,6 +69,7 @@ for i in range(0,len(df_list)):
   plt.subplot(1+len(df_list)//6,6,i+1)
   plot_spec(i)
 # %%
+# %%
 def fit_peak_range(min, max,filter):
     peak_list = []
     for i in range(big_df.shape[1]//2):

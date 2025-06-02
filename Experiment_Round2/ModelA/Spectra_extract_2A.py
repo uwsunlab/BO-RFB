@@ -24,7 +24,7 @@ df_summary = pd.read_excel("2303 Experiment Details.xlsx", sheet_name="summary")
 df_summary.head()
 
 # Get the CSV files only
-directory = "240725_102404 - Test 2A/"
+directory = "240725_102404_Test2A/"
 files = fnmatch.filter(os.listdir(directory), '*.csv')
 
 sorted_files = np.array(sorted(files, key=lambda s: int(re.findall(r'\d+', s)[1]) if len(re.findall(r'\d+', s)) >= 2 else 0))

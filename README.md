@@ -39,6 +39,16 @@ In total, four rounds of data collection were conducted and are named: Round1, R
 - [Round Redo](Round_Redo): Contains selected samples that were resynthesized due to inconsistencies.
 
 ## Data Extraction
-- Explain about the HPLC data
-- Explain about the extraction algorithm and the python
+The product yield is extracted form the HPLC data using the python package ```hplc-py``` 
 ![File](figures/HPLC.png)
+The peaks are first fit to the Chromatogrpam
+```
+    chrom = Chromatogram(data_df, cols={'time':f'wave{i}', 'signal':f'intensity{i}'})
+    chrom.correct_baseline()
+    peak_list.append(chrom.fit_peaks(prominence=0.01))
+```
+The fit produces a dataframe consisting of the peak locations and the area under the cuve at that peak. We locate the peaks of interest and comput the yield.
+
+For our experiment we have three repetes per conditions. The HPLC of two selected conditons are shown in the figure below. The yield mean and variance are computed after extracting each peak individually.
+![File](figures/SupFit_repetes.png)
+
