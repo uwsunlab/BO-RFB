@@ -44,7 +44,7 @@ for idx, i in enumerate(range(3*n, 3*(n+1))):
     test1 = pd.read_csv(file_directory+'/'+sorted_files[i], skiprows=1)[['ACQUITY TUV ChA', 'ACQUITY TUV ChA 280nm']]
     test1.columns = ['wave', 'intensity']
     axs[idx].plot(test1['wave'], test1['intensity'], 'tab:red')
-    axs[idx].set_xlabel('Wavelength (nm)')
+    axs[idx].set_xlabel('Time (min)')
     axs[idx].set_ylabel('Intensity')
     axs[idx].set_title(f'{sorted_files[i]}')
 plt.tight_layout()
