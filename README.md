@@ -2,6 +2,9 @@
 Machine learning guided synthesis for organic flow batteries and the processes.
 This repositiory contains the code used for the experiment conducted at PNNl and UW for synthesizing organic redox batteries.
 
+All code is run on python version 3.9.1
+
+
 ![File](figures/Figure1_OfficialStage.png)
 
 The following figure is a diagram that shows how to files are organized
@@ -33,10 +36,10 @@ Model evaluations and comparison plots can be found in ```Experiment_Results/All
 
 # Method
 In total, four rounds of data collection were conducted and are named: Round1, Round2, Round3, and Round_Redo. 
-- [Round 1](Round1): Contains data generated from Latin Hypercube sampling and their respective HPLC samples. 
-- [Round 2](Round2): Contains the code to extract yield from HPLC and the Bayesian Optimization in round 2 for Model A, Model B, and Model C, as well as their repective HPLC samples. 
-- [Round 3](Round3): Contains the code to extract yield from HPLC and the Bayesian Optimization in round 3 for Model A, Model B, and Model C, as well as their repective HPLC samples. 
-- [Round Redo](Round_Redo): Contains selected samples that were resynthesized due to inconsistencies.
+- [Round 1](Experiment_Round1): Contains data generated from Latin Hypercube sampling and their respective HPLC samples. 
+- [Round 2](Experiment_Round2): Contains the code to extract yield from HPLC and the Bayesian Optimization in round 2 for Model A, Model B, and Model C, as well as their repective HPLC samples. 
+- [Round 3](Experiment_Round3): Contains the code to extract yield from HPLC and the Bayesian Optimization in round 3 for Model A, Model B, and Model C, as well as their repective HPLC samples. 
+- [Round Redo](Experiment_Round_Redo): Contains selected samples that were resynthesized due to inconsistencies.
 
 ## Data Extraction
 The product yield is extracted form the HPLC data using the python package ```hplc-py``` 
@@ -52,3 +55,17 @@ The fit produces a dataframe consisting of the peak locations and the area under
 For our experiment we have three repetes per conditions. The HPLC of two selected conditons are shown in the figure below. The yield mean and variance are computed after extracting each peak individually.
 ![File](figures/SupFit_repetes.png)
 
+# Pool-based analysis 
+[Pool-Based](PoolBased)
+To compare our model results and test their reproducibility, we conducted pool based analysis. 
+
+[Aquisition Function Selection](PoolBased/AcquisitionFunctions): Contains the analysis for the selection of the aqusiiton functions. 
+- [Initial Data set](PoolBased/AcquisitionFunctions/pool_aqu_comparison.ipynb) is the analysis for frist 15 samples collected from Latin Hypercube Sampling to determine which aquisition to choose
+- [Full Data set](PoolBased/AcquisitionFunctions/pool_aqu_comparison_fulldata.ipynb) is the analysis that shows the best aquisition function for the redox flow battery data set.
+
+[Pool-based Comparisons](PoolBased/ComparisonTesting): Contains the analysis of the pool based comparisons.
+- [Surrogate Comparison](PoolBased/ComparisonTesting/surrogate_comparison.ipynb): Contains the comparison of differnt surrogate models.
+- [BO vs BBO Comparsion](PoolBased/ComparisonTesting/BOvsBBOvsRandom.ipynb): Contains the comparison of Bayesian optimizaiton with differnet batch sizes.
+
+
+[Scalibility testing](PoolBased/ScalabilityTesting/README.md): Contains the analysis for applying our models ot a different and larger data set.
