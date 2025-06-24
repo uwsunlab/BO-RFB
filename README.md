@@ -2,7 +2,7 @@
 Machine learning guided synthesis for organic flow batteries and the processes.
 This repository contains the code used for the experiment conducted at PNNL and UW for synthesizing organic redox batteries.
 
-All code is run on python version 3.9.1
+All code is run on Python version 3.9.1
 
 
 ![File](figures/Figure1_OfficialStage.png)
