@@ -1,6 +1,6 @@
 # Autonomous Synthesis of Organic Flow Battery Materials
 Machine learning guided synthesis for organic flow batteries and the processes.
-This repositiory contains the code used for the experiment conducted at PNNl and UW for synthesizing organic redox batteries.
+This repository contains the code used for the experiment conducted at PNNL and UW for synthesizing organic redox batteries.
 
 All code is run on python version 3.9.1
 
