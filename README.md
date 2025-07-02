@@ -60,11 +60,11 @@ For our experiment we have three repetes per conditions. The HPLC of two selecte
 To compare our model results and test their reproducibility, we conducted pool based analysis. 
 
 [Aquisition Function Selection](PoolBased/AcquisitionFunctions): Contains the analysis for the selection of the aqusiiton functions. 
-- ```pool_aqu_comparison.ipynb```  is the analysis for frist 15 samples collected from Latin Hypercube Sampling to determine which aquisition to choose. [See file](PoolBased/AcquisitionFunctions/pool_aqu_comparison.ipynb)
+- ```pool_aqu_comparison.ipynb```  is the analysis for first 15 samples collected from Latin Hypercube Sampling to determine which aquisition to choose. [See file](PoolBased/AcquisitionFunctions/pool_aqu_comparison.ipynb)
 - ```pool_aqu_comparison_fulldata.ipynb```is the analysis that shows the best aquisition function for the redox flow battery data set. [See file](PoolBased/AcquisitionFunctions/pool_aqu_comparison_fulldata.ipynb) 
 
 [Pool-based Comparisons](PoolBased/ComparisonTesting): Contains the analysis of the pool based comparisons.
-- ```surrogate_comparison.ipynb``` Contains the comparison of differnt surrogate models. [See file](PoolBased/ComparisonTesting/surrogate_comparison.ipynb)
+- ```surrogate_comparison.ipynb``` Contains the comparison of different surrogate models. [See file](PoolBased/ComparisonTesting/surrogate_comparison.ipynb)
 - ```BOvsBBOvsRandom.ipynb``` Contains the comparison of Bayesian optimizaiton with differnet batch sizes. [See file](PoolBased/ComparisonTesting/BOvsBBOvsRandom.ipynb)
 
-[Scalibility testing](PoolBased/ScalabilityTesting/README.md): Contains the analysis for applying our models ot a different and larger data set.
+[Scalibility testing](PoolBased/ScalabilityTesting/README.md): Contains the analysis for applying our models to a different and larger data set.
