@@ -137,7 +137,7 @@ class Models:
 
     def _aquisition_function(self,select):
         qEI = qExpectedImprovement(model=self.model, best_f=self.y_train.max())
-        qPI = qProbabilityOfImprovement(model=self.model, best_f=self.y_train.max(),sampler=sampler)
+        qPI = qProbabilityOfImprovement(model=self.model, best_f=self.y_train.max())
         qUCB = qUpperConfidenceBound(model=self.model, beta=0.1, sampler=sampler)
         LogPI = LogProbabilityOfImprovement(model=self.model, best_f=self.y_train.max())
         PostM = PosteriorMean(model=self.model)
