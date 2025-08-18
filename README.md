@@ -10,6 +10,13 @@ All code is run on Python version 3.9.1
 The following figure is a diagram that shows how to files are organized
 ![File](figures/file_structure.png)
 
+# Workflow
+The Bayesian Optimization experiment follows the following workflow. Acess the files in order: \
+Experiment Round 1 > Experiment Round 2 > Experiment Round 3 
+- Experiment Round Redo is a redo of selected samples.
+
+To see the final results, access Experimental Results.
+
 # Results 
 ## Model A:
 [Open Model A Results Notebook](Experiment_Results/ModelA_results.ipynb)
