@@ -1,7 +1,6 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16895908.svg)](https://doi.org/10.5281/zenodo.16895908)
 
-# Asagao 
-![File](figures/asagao_morningglory.png)
+# Asagao ![File](figures/asagao_morningglory.png)
 
 # Autonomous Synthesis of Organic Flow Battery Materials
 Machine learning guided synthesis for organic flow batteries and the processes.
