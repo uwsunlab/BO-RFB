@@ -1,4 +1,7 @@
-[![DOI](https://zenodo.org/badge/825950391.svg)](https://doi.org/10.5281/zenodo.16895907)
+# Asagao [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16895908.svg)](https://doi.org/10.5281/zenodo.16895908)
+![File](figures/asagao_morningglory.png)
+
+
 # Autonomous Synthesis of Organic Flow Battery Materials
 Machine learning guided synthesis for organic flow batteries and the processes.
 This repository contains the code used for the experiment conducted at PNNL and UW for synthesizing organic redox batteries.
